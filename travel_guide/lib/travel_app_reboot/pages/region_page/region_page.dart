@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_guide/travel_app_reboot/constants.dart';
 import 'package:travel_guide/travel_app_reboot/pages/add_travel_spot/add_travel_spot.dart';
+import 'package:travel_guide/travel_app_reboot/pages/destination_listview/destination_listview_page.dart';
 
 class RegionPage extends StatefulWidget {
   const RegionPage({Key? key, this.appBarTitle = 'Region Page'})
@@ -37,7 +38,8 @@ class _RegionPageState extends State<RegionPage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddTravelSpot()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddTravelSpot()));
         },
         child: Icon(Icons.add),
       ),
@@ -56,15 +58,24 @@ class _RegionPageState extends State<RegionPage> {
         ),
         itemCount: data.length,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.all(defaultPadding / 2),
-                child: Text(
-                  data[index],
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DestinationListViewPage(title: data[index])));
+            },
+            child: Card(
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.all(defaultPadding / 2),
+                  child: Text(
+                    data[index],
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),

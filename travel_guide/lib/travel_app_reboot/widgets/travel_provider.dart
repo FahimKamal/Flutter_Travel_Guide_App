@@ -8,25 +8,9 @@ import 'package:intl/intl.dart';
 import 'package:travel_guide/travel_app_reboot/travel_models/travel_model.dart';
 
 class TravelProvider extends ChangeNotifier {
-  TravelModel _travelModel = TravelModel();
   List<TravelModel> _travelDestinationList = [];
-  String? _loadingMessage;
-
-  TravelModel get travelModel => _travelModel;
-
-  set travelModel(TravelModel value) {
-    _travelModel = value;
-  }
 
   List<TravelModel> get travelDestinationList => _travelDestinationList;
-
-  String get loadingMessage => _loadingMessage!;
-
-  set loadingMessage(String value) {
-    _loadingMessage = value;
-  }
-
-
 
   Future<void> addTravelDestination(
       {required BuildContext context,
