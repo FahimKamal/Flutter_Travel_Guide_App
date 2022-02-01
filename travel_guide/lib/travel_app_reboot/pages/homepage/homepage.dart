@@ -16,11 +16,13 @@ class _TravelAppHomepageState extends State<TravelAppHomepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const HomeDrawer(),
-      body: Column(
-        children: const [
-          MainMenuAppbar(),
-          MainMenu(),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: const [
+            MainMenuAppbar(),
+            MainMenu(),
+          ],
+        ),
       ),
     );
   }
