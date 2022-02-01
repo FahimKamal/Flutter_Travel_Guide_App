@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'components/appbar.dart';
+import 'components/homepage_drawer.dart';
 import 'components/main_menu.dart';
 
 class TravelAppHomepage extends StatefulWidget {
@@ -14,6 +15,7 @@ class _TravelAppHomepageState extends State<TravelAppHomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const HomeDrawer(),
       body: Column(
         children: const [
           MainMenuAppbar(),
@@ -23,6 +25,10 @@ class _TravelAppHomepageState extends State<TravelAppHomepage> {
     );
   }
 }
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_guide/travel_app_reboot/constants.dart';
+import 'package:travel_guide/travel_app_reboot/pages/components/functions.dart';
 import 'package:travel_guide/travel_app_reboot/travel_models/travel_model.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -24,10 +25,7 @@ class _DetailsPageState extends State<DetailsPage> {
           SizedBox(
             width: double.maxFinite,
             height: 230,
-            child: Image.asset(
-              widget.travelModel.imageLink!,
-              fit: BoxFit.fitWidth,
-            ),
+            child: loadImage(imageLink: widget.travelModel.imageLink!),
           ),
           Column(
             children: [

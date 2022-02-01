@@ -38,3 +38,18 @@ void showLoadingDialog(BuildContext context, String message) {
     },
   );
 }
+
+/// Can detect if the link of image from local image or cloud.
+/// Load image accordingly.
+Image loadImage({required String imageLink}) {
+  if(imageLink.contains('https')){
+    return Image.network(
+      imageLink,
+      fit: BoxFit.fitWidth,
+    );
+  }
+  return Image.asset(
+    imageLink,
+    fit: BoxFit.fitWidth,
+  );
+}

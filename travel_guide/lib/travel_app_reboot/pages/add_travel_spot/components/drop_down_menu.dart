@@ -30,10 +30,9 @@ class DropDownMenu extends StatelessWidget {
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
             value: value,
-            hint: Container(
-                child: Text(
-                  label,
-                )),
+            hint: Text(
+              label,
+            ),
             items: items,
             onChanged: onChanged,
           ),

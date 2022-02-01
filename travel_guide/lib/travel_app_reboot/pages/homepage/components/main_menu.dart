@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_guide/travel_app_reboot/pages/components/functions.dart';
+import 'package:travel_guide/travel_app_reboot/pages/destination_listview/destination_listview_page.dart';
 import 'package:travel_guide/travel_app_reboot/pages/homepage/components/social_links.dart';
 import 'package:travel_guide/travel_app_reboot/pages/region_page/region_page.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,7 +21,7 @@ class MainMenu extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(defaultPadding),
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -70,7 +71,7 @@ class HomepageMenuButton extends StatelessWidget {
         } else if (label == "ভ্রমণ ব্লগ") {
           showMessage(context: context, message: 'Link is not ready yet.');
         } else if (label == "জনপ্রিয় স্থান") {
-          showMessage(context: context, message: 'Link is not ready yet.');
+          Navigator.push(context, MaterialPageRoute(builder: (context) => DestinationListViewPage(title: label!) ));
         } else if (label == "সংরক্ষিত তথ্য") {
           showMessage(context: context, message: 'Link is not ready yet.');
         }

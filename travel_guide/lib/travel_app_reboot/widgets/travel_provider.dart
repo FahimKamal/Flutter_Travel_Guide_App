@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:travel_guide/travel_app_reboot/travel_models/travel_model.dart';
 
 class TravelProvider extends ChangeNotifier {
-  List<TravelModel> _travelDestinationList = [];
+  final List<TravelModel> _travelDestinationList = [];
 
   List<TravelModel> get travelDestinationList => _travelDestinationList;
 
@@ -45,15 +45,18 @@ class TravelProvider extends ChangeNotifier {
 
         // Now that image is uploaded and also have the image link from cloud,
         // Now save everything in firebase database.
-        FirebaseFirestore.instance.collection("Travel_Destinations").doc(id).set({
-          'id' : id,
-          'destinationName' : travelModel.destinationName,
-          'imageLink' : imageLink,
-          'description' : travelModel.description,
-          'travelRegion' : travelModel.travelRegion,
-          'travelSpot' : travelModel.travelSpot,
-          'timeStamp' : timeStamp.toString(),
-          'submitDate' : submitDate,
+        FirebaseFirestore.instance
+            .collection("Travel_Destinations")
+            .doc(id)
+            .set({
+          'id': id,
+          'destinationName': travelModel.destinationName,
+          'imageLink': imageLink,
+          'description': travelModel.description,
+          'travelRegion': travelModel.travelRegion,
+          'travelSpot': travelModel.travelSpot,
+          'timeStamp': timeStamp.toString(),
+          'submitDate': submitDate,
         });
 
         Navigator.pop(context);
@@ -73,5 +76,37 @@ class TravelProvider extends ChangeNotifier {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(error.toString())));
     });
+  }
+
+  Future<void> getTravelDestinationList({required BuildContext context,required String travelSpot}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('Travel_Destinations')
+          .where('travelSpot', isEqualTo: travelSpot)
+          .get()
+          .then((snapShot) {
+            _travelDestinationList.clear();
+
+            snapShot.docChanges.forEach((element) {
+              TravelModel travelModel = TravelModel(
+                id: element.doc['id'],
+                destinationName: element.doc['destinationName'],
+                imageLink: element.doc['imageLink'],
+                description: element.doc['description'],
+                travelRegion: element.doc['travelRegion'],
+                travelSpot: element.doc['travelSpot'],
+                timeStamp: element.doc['timeStamp'],
+                submitDate: element.doc['submitDate']
+              );
+              _travelDestinationList.add(travelModel);
+            });
+      });
+      print("Length of items: " + _travelDestinationList.length.toString());
+      notifyListeners();
+      // Navigator.pop(context);
+
+    } catch (error) {
+      print(error.toString());
+    }
   }
 }

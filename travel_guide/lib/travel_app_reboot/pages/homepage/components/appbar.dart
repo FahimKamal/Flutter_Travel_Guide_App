@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travel_guide/travel_app_reboot/pages/components/functions.dart';
+import 'package:travel_guide/travel_app_reboot/pages/homepage/components/app_logo.dart';
 
 import '../../../constants.dart';
 
@@ -14,28 +16,23 @@ class MainMenuAppbar extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       height: 100,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Icon(
-            Icons.add_location_alt_outlined,
-            color: Colors.white,
-            size: 50,
+          IconButton(
+            onPressed: (){
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(Icons.menu, color: Colors.white,),
           ),
-          Column(
-            children: const [
-              Text(
-                "ভ্রমণ গাইড",
-                style: TextStyle(fontSize: 40, color: Colors.white),
-              ),
-              Text(
-                "দেশ-বিদেশ ভ্রমণের সকল তথ্য ও পরামর্শ",
-                style: TextStyle(fontSize: 10, color: Colors.white),
-              ),
-            ],
+          const AppLogo(),
+          IconButton(
+            onPressed: (){
+              showMessage(context: context, message: 'Search function no added yet.');
+            },
+            icon: const Icon(Icons.search, color: Colors.white,),
           ),
         ],
       ),
     );
   }
 }
-

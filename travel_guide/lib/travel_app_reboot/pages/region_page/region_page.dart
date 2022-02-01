@@ -41,7 +41,7 @@ class _RegionPageState extends State<RegionPage> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const AddTravelSpot()));
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

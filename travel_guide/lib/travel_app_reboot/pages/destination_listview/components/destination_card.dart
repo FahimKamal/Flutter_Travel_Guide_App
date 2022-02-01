@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_guide/travel_app_reboot/pages/components/functions.dart';
 import 'package:travel_guide/travel_app_reboot/pages/destination_details_page/details_page.dart';
 import 'package:travel_guide/travel_app_reboot/travel_models/travel_model.dart';
 
@@ -52,10 +53,7 @@ class DestinationCard extends StatelessWidget {
                 child: SizedBox(
                   width: double.maxFinite,
                   height: 200,
-                  child: Image.asset(
-                    travelModel.imageLink!,
-                    fit: BoxFit.fitWidth,
-                  ),
+                  child: loadImage(imageLink: travelModel.imageLink!),
                 ),
               ),
 
