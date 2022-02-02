@@ -45,11 +45,11 @@ class DropDownMenu extends StatelessWidget {
 List<DropdownMenuItem<String>> dropDownMenuItemGenerator(List<String> list) {
   return list
       .map((element) => DropdownMenuItem(
-    value: element,
-    child: Container(
-      child: Text(element),
-    ),
-  ))
+            value: element,
+            child: Container(
+              child: Text(element),
+            ),
+          ))
       .toList();
 }
 
