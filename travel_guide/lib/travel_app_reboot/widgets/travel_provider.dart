@@ -18,7 +18,7 @@ class TravelProvider extends ChangeNotifier {
       required File image}) async {
     final timeStamp = DateTime.now().microsecondsSinceEpoch;
 
-    String id = travelModel.destinationName! + timeStamp.toString();
+    String id = timeStamp.toString();
 
     final submitDate = DateFormat("dd-MMM-yyyy/hh:mm:aa")
         .format(DateTime.fromMicrosecondsSinceEpoch(timeStamp));
@@ -82,10 +82,12 @@ class TravelProvider extends ChangeNotifier {
     try {
       await FirebaseFirestore.instance
           .collection('Travel_Destinations')
-          .where('travelSpot', isEqualTo: travelSpot)
+          .where('travelSpot', isEqualTo: travelSpot).orderBy('timeStamp', descending: true)
           .get()
           .then((snapShot) {
             _travelDestinationList.clear();
+
+            print("Length of items: " + _travelDestinationList.length.toString());
 
             snapShot.docChanges.forEach((element) {
               TravelModel travelModel = TravelModel(
